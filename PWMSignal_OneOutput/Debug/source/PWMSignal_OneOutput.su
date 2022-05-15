@@ -1,0 +1,2 @@
+/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/PWMSignal_OneOutput/drivers/fsl_ftm.h:700:20:FTM_StartTimer	24	static
+../source/PWMSignal_OneOutput.c:22:5:main	72	static
