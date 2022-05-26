@@ -1,0 +1,4 @@
+../board/peripherals.c:86:13:UART1_init	8	static
+../board/peripherals.c:127:13:UART2_init	8	static
+../board/peripherals.c:134:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:144:6:BOARD_InitBootPeripherals	8	static
