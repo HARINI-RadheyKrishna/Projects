@@ -1,3 +1,2 @@
-/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/UART Polling Bidirectional/drivers/fsl_uart.h:667:23:UART_ReadByte	16	static
 ../source/UART Polling Bidirectional.c:60:6:delay	16	static
-../source/UART Polling Bidirectional.c:69:5:main	32	static
+../source/UART Polling Bidirectional.c:69:5:main	40	static

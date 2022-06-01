@@ -1,7 +1,7 @@
-/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/UART Polling Bidirectional/drivers/fsl_clock.h:602:20:CLOCK_EnableClock	24	static
-/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/UART Polling Bidirectional/drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
-/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/UART Polling Bidirectional/drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
-/home/harini/Documents/MCUXpresso_11.4.0_6237/workspace/UART Polling Bidirectional/drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
+/home/harini/Desktop/Project code/Projects/Project Files/UART Polling Bidirectional/drivers/fsl_clock.h:602:20:CLOCK_EnableClock	24	static
+/home/harini/Desktop/Project code/Projects/Project Files/UART Polling Bidirectional/drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+/home/harini/Desktop/Project code/Projects/Project Files/UART Polling Bidirectional/drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
+/home/harini/Desktop/Project code/Projects/Project Files/UART Polling Bidirectional/drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
 ../board/pin_mux.c:132:6:BOARD_InitBootPins	8	static
 ../board/pin_mux.c:158:6:BOARD_InitPins	8	static
 ../board/pin_mux.c:203:6:BOARD_InitBUTTONsPins	24	static

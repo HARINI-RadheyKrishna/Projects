@@ -53,8 +53,8 @@
 #define DEMO_UART2_CLK_FREQ CLOCK_GetFreq(kCLOCK_CoreSysClk)
 
 
-uint8_t txbuff = 5;
-static uint8_t rxbuff = 0;
+uint8_t txbuff[] = {"This is an initializing statement"};
+//static uint8_t rxbuff[] = {};
 uint32_t count;
 
 void delay (void)
@@ -81,7 +81,7 @@ int main(void) {
     BOARD_InitDebugConsole();
 #endif
 
-int a;
+uint8_t a;
     UART_GetDefaultConfig(&config1);
        config1.baudRate_Bps = BOARD_DEBUG_UART_BAUDRATE;
        config1.enableTx     = true;
@@ -95,16 +95,17 @@ int a;
        UART_Init(DEMO_UART1, &config1, DEMO_UART1_CLK_FREQ);
        UART_Init(DEMO_UART2, &config2, DEMO_UART2_CLK_FREQ);
 
-       UART_WriteBlocking(DEMO_UART1, &txbuff, 1);
+       UART_WriteBlocking(DEMO_UART1, txbuff, sizeof(txbuff) - 1);
        delay();
        while (1)
 
        {
     	  // UART_ReadBlocking(DEMO_UART, rxbuff, 10);
     	           	   {
-    	  UART_WriteBlocking(DEMO_UART1, &txbuff, 1);
-    	  delay();
-    	  rxbuff=UART_ReadByte(DEMO_UART2);
+    	             	  UART_ReadBlocking(DEMO_UART2, &a, 1);
+    	             	  delay();
+    	             	  UART_WriteBlocking(DEMO_UART1, &a, 1);
+    	             	  //printf("%d\n", a);
     	           	   }
 
 

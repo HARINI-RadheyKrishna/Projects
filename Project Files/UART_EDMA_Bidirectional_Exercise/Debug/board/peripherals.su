@@ -1,0 +1,6 @@
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_dmamux.h:75:20:DMAMUX_EnableChannel	16	static
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_dmamux.h:109:20:DMAMUX_SetSource	24	static
+../board/peripherals.c:192:13:UART1_init	16	static
+../board/peripherals.c:282:13:UART2_init	16	static
+../board/peripherals.c:303:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:317:6:BOARD_InitBootPeripherals	8	static

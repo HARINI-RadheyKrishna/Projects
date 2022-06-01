@@ -1,0 +1,12 @@
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_clock.h:602:20:CLOCK_EnableClock	24	static
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
+/home/harini/Desktop/Electronics/UART_EDMA_Bidirectional_Exercise/drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
+../board/pin_mux.c:132:6:BOARD_InitBootPins	8	static
+../board/pin_mux.c:160:6:BOARD_InitPins	8	static
+../board/pin_mux.c:221:6:BOARD_InitBUTTONsPins	24	static
+../board/pin_mux.c:299:6:BOARD_InitLEDsPins	32	static
+../board/pin_mux.c:409:6:BOARD_InitDEBUG_UARTPins	16	static
+../board/pin_mux.c:474:6:BOARD_InitTHERPins	4	static
+../board/pin_mux.c:502:6:BOARD_InitACCELPins	24	static
+../board/pin_mux.c:620:6:BOARD_InitOSCPins	8	static

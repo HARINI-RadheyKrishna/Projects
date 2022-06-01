@@ -775,7 +775,7 @@ status_t UART_WriteBlocking(UART_Type *base, const uint8_t *data, size_t length)
         }
 #endif
         base->D = *(data++);
-        PRINTF("%d",(data++));
+        //PRINTF("%d",(data++));
     }
 
     /* Ensure all the data in the transmit buffer are sent out to bus. */
