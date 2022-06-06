@@ -25,7 +25,7 @@
 #define UART1_RX_DMA_REQUEST     kDmaRequestMux0UART1Rx
 #define UART2_TX_DMA_REQUEST     kDmaRequestMux0UART2Tx
 #define UART2_RX_DMA_REQUEST     kDmaRequestMux0UART2Rx
-#define ECHO_BUFFER_LENGTH 8
+#define ECHO_BUFFER_LENGTH 5
 
 
 /* TODO: insert other definitions and declarations here. */
@@ -42,7 +42,7 @@ edma_handle_t g_uartRxEdmaHandle1;
 uart_edma_handle_t g_uartEdmaHandle2;
 edma_handle_t g_uartTxEdmaHandle2;
 edma_handle_t g_uartRxEdmaHandle2;
-uint8_t g_txBuffer[ECHO_BUFFER_LENGTH] = {1,2,3,4,5,6,7,80};
+uint8_t g_txBuffer[ECHO_BUFFER_LENGTH] = {1,2,3,4,5};
 uint8_t g_rxBuffer[ECHO_BUFFER_LENGTH];
 
 volatile bool rxBufferEmpty            = true;
@@ -125,14 +125,19 @@ int main(void) {
 	while (1)
 	{
 		sendXfer.data        = g_txBuffer;
-		        sendXfer.dataSize    = ECHO_BUFFER_LENGTH;
+		sendXfer.dataSize    = ECHO_BUFFER_LENGTH;
 
 
 		                   txOnGoing = true;
+		                   PRINTF("Transmitting the data");
 		                   UART_SendEDMA(UART1, &g_uartEdmaHandle1, &sendXfer);
-		                   receiveXfer.data     = g_rxBuffer;
-		                   receiveXfer.dataSize = ECHO_BUFFER_LENGTH;
 
+
+		                    for(int k=0;k<1000;k++){
+		                    	asm("nop");
+		                    }
+		                    receiveXfer.data     = g_rxBuffer;
+		                    receiveXfer.dataSize = ECHO_BUFFER_LENGTH;
 		                    rxOnGoing = true;
 		                    UART_ReceiveEDMA(UART2, &g_uartEdmaHandle2, &receiveXfer);
 
@@ -140,7 +145,8 @@ int main(void) {
 		                    	asm("nop");
 		                    }
 
-		                    for(int j=0;j<ECHO_BUFFER_LENGTH;j++){
+		                    for(int j=0; j<ECHO_BUFFER_LENGTH; j++)
+		                    {
 		                    	PRINTF("%d-rx-%d\n",g_rxBuffer[j],j);
 		                    }
 
