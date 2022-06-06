@@ -1,0 +1,12 @@
+name = str(input("Enter any name"))
+Num = len(name)
+print(Num)
+
+if Num < 3:
+    print('Name must be at least 3 characters long')
+    
+elif Num > 10:
+    print('Name can have a maximum of 10 characters only')
+    
+else: 
+    print('The name given is: ', name)

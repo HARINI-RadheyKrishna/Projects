@@ -1,0 +1,13 @@
+temperature = str(input("Enter any value"))
+data = ["hot", "cold"]
+for i in enumerate (data):
+    print (i)
+    
+if temperature == data[0]:
+            print('Take an umbrella with you')
+    
+elif temperature == data[1]:
+        print('Its too cold. Wear jackets before going out')
+
+else:
+        print('Its a lovely day and no accessories needed')
