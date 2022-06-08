@@ -1,0 +1,5 @@
+../board/peripherals.c:375:13:FTM0_init	4	static
+../board/peripherals.c:623:13:GPIOB_init	4	static
+../board/peripherals.c:630:13:BOARD_InitPeripherals_CommonPreInit	4	static
+../board/peripherals.c:636:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:648:6:BOARD_InitBootPeripherals	8	static
