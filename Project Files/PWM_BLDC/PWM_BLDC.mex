@@ -822,27 +822,29 @@
                               <setting name="hwTriggerMode" value="0"/>
                               <setting name="synchronizationMode" value="1"/>
                               <struct name="synchronizationMethod">
-                                 <setting name="SWOC" value="0"/>
-                                 <setting name="INVC" value="0"/>
-                                 <setting name="SYNCHOM" value="0"/>
-                                 <setting name="CNTINC" value="0"/>
+                                 <setting name="SWOC" value="1"/>
+                                 <setting name="INVC" value="1"/>
+                                 <setting name="SYNCHOM" value="1"/>
+                                 <setting name="CNTINC" value="1"/>
                               </struct>
                               <set name="loadingPoint">
-                                 <selected/>
+                                 <selected>
+                                    <id>CntMax</id>
+                                 </selected>
                               </set>
                               <setting name="pwmSynchronizationMode" value="0"/>
                               <setting name="counterReinit" value="false"/>
                               <struct name="triggerSynchronization">
                                  <setting name="HWSOC" value="false"/>
-                                 <setting name="SWSOC" value="false"/>
+                                 <setting name="SWSOC" value="true"/>
                                  <setting name="HWINVC" value="false"/>
                                  <setting name="SWINVC" value="false"/>
                                  <setting name="HWOM" value="false"/>
-                                 <setting name="SWOM" value="false"/>
+                                 <setting name="SWOM" value="true"/>
                                  <setting name="HWWRBUF" value="false"/>
-                                 <setting name="SWWRBUF" value="false"/>
+                                 <setting name="SWWRBUF" value="true"/>
                                  <setting name="HWRSTCNT" value="false"/>
-                                 <setting name="SWRSTCNT" value="false"/>
+                                 <setting name="SWRSTCNT" value="true"/>
                               </struct>
                            </struct>
                            <struct name="intermediateLoad">
@@ -889,7 +891,7 @@
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
-                              <setting name="pwmSynchronization" value="false"/>
+                              <setting name="pwmSynchronization" value="true"/>
                               <struct name="outputControlSettings">
                                  <struct name="channel1">
                                     <setting name="outputInitValue" value="0"/>
@@ -963,7 +965,7 @@
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
-                              <setting name="pwmSynchronization" value="false"/>
+                              <setting name="pwmSynchronization" value="true"/>
                               <struct name="outputControlSettings">
                                  <struct name="channel1">
                                     <setting name="outputInitValue" value="0"/>
@@ -1001,7 +1003,7 @@
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
-                              <setting name="pwmSynchronization" value="false"/>
+                              <setting name="pwmSynchronization" value="true"/>
                               <struct name="outputControlSettings">
                                  <struct name="channel1">
                                     <setting name="outputInitValue" value="0"/>
@@ -1075,7 +1077,7 @@
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
-                              <setting name="pwmSynchronization" value="false"/>
+                              <setting name="pwmSynchronization" value="true"/>
                               <struct name="outputControlSettings">
                                  <struct name="channel1">
                                     <setting name="outputInitValue" value="0"/>

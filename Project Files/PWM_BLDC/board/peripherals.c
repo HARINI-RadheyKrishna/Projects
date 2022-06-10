@@ -130,24 +130,24 @@ instance:
         - hwTriggerMode: '0'
         - synchronizationMode: '1'
         - synchronizationMethod:
-          - SWOC: '0'
-          - INVC: '0'
-          - SYNCHOM: '0'
-          - CNTINC: '0'
-        - loadingPoint: ''
+          - SWOC: '1'
+          - INVC: '1'
+          - SYNCHOM: '1'
+          - CNTINC: '1'
+        - loadingPoint: 'CntMax'
         - pwmSynchronizationMode: '0'
         - counterReinit: 'false'
         - triggerSynchronization:
           - HWSOC: 'false'
-          - SWSOC: 'false'
+          - SWSOC: 'true'
           - HWINVC: 'false'
           - SWINVC: 'false'
           - HWOM: 'false'
-          - SWOM: 'false'
+          - SWOM: 'true'
           - HWWRBUF: 'false'
-          - SWWRBUF: 'false'
+          - SWWRBUF: 'true'
           - HWRSTCNT: 'false'
-          - SWRSTCNT: 'false'
+          - SWRSTCNT: 'true'
       - intermediateLoad:
         - reloadPoints: ''
       - extTriggers: ''
@@ -183,7 +183,7 @@ instance:
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
-        - pwmSynchronization: 'false'
+        - pwmSynchronization: 'true'
         - outputControlSettings:
           - channel1:
             - outputInitValue: '0'
@@ -247,7 +247,7 @@ instance:
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
-        - pwmSynchronization: 'false'
+        - pwmSynchronization: 'true'
         - outputControlSettings:
           - channel1:
             - outputInitValue: '0'
@@ -280,7 +280,7 @@ instance:
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
-        - pwmSynchronization: 'false'
+        - pwmSynchronization: 'true'
         - outputControlSettings:
           - channel1:
             - outputInitValue: '0'
@@ -344,7 +344,7 @@ instance:
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
-        - pwmSynchronization: 'false'
+        - pwmSynchronization: 'true'
         - outputControlSettings:
           - channel1:
             - outputInitValue: '0'

@@ -6,7 +6,7 @@
  * Generated linker script file for MKV31F512xxx12
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.4.0 [Build 6237] [2021-08-06] on 14-May-2022, 2:38:30 PM
+ * MCUXpresso IDE v11.4.0 [Build 6237] [2021-08-06] on 10-Jun-2022, 1:23:57 PM
  */
 
 INCLUDE "PWMSignal_OneOutput_Debug_library.ld"

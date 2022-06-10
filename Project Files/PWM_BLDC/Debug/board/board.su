@@ -1,2 +1,2 @@
-/home/harini/Desktop/Electronics/PWM_BLDC/utilities/fsl_debug_console.h:152:24:DbgConsole_Init	24	static
+/home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/utilities/fsl_debug_console.h:152:24:DbgConsole_Init	24	static
 ../board/board.c:25:6:BOARD_InitDebugConsole	16	static
