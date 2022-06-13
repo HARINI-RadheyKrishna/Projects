@@ -829,16 +829,16 @@
                               </struct>
                               <set name="loadingPoint">
                                  <selected>
-                                    <id>CntMax</id>
+                                    <id>CntMin</id>
                                  </selected>
                               </set>
                               <setting name="pwmSynchronizationMode" value="0"/>
-                              <setting name="counterReinit" value="false"/>
+                              <setting name="counterReinit" value="true"/>
                               <struct name="triggerSynchronization">
                                  <setting name="HWSOC" value="false"/>
                                  <setting name="SWSOC" value="true"/>
                                  <setting name="HWINVC" value="false"/>
-                                 <setting name="SWINVC" value="false"/>
+                                 <setting name="SWINVC" value="true"/>
                                  <setting name="HWOM" value="false"/>
                                  <setting name="SWOM" value="true"/>
                                  <setting name="HWWRBUF" value="false"/>
@@ -856,10 +856,10 @@
                               <selected/>
                            </set>
                            <setting name="writeProtection" value="false"/>
-                           <setting name="outputInit" value="false"/>
+                           <setting name="outputInit" value="true"/>
                            <setting name="bdmMode" value="0"/>
                            <setting name="enableTimerInInit" value="true"/>
-                           <setting name="useGlobalTimeBase" value="false"/>
+                           <setting name="useGlobalTimeBase" value="true"/>
                            <setting name="globalTimeBaseOutput" value="false"/>
                         </struct>
                         <set name="timer_interrupts">
@@ -887,7 +887,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
@@ -925,7 +925,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
                               <struct name="outputControlSettings">
@@ -961,7 +961,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
@@ -999,7 +999,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
@@ -1037,7 +1037,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>
                               <struct name="outputControlSettings">
@@ -1073,7 +1073,7 @@
                               <setting name="inputFilterPeriod" value="1"/>
                               <setting name="compareValueStr" value="0"/>
                               <setting name="firstEdgeValueStr" value="0"/>
-                              <setting name="dutyValueStr" value="0"/>
+                              <setting name="dutyValueStr" value="1"/>
                               <setting name="inversionControl" value="false"/>
                               <setting name="faultControl" value="false"/>
                               <setting name="deadtimeInsertion" value="false"/>

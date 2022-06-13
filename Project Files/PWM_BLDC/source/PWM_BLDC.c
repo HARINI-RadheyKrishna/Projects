@@ -41,7 +41,7 @@
 #include "fsl_debug_console.h"
 #include "fsl_ftm.h"
 /* TODO: insert other include files here. */
-#define INPUT 20
+//#define INPUT 20
 
 /* TODO: insert other definitions and declarations here. */
 void delay (void)
@@ -61,16 +61,17 @@ for (int i; i<1000; i++)
 
 
 #define FTM_SOURCE_CLOCK CLOCK_GetFreq(kCLOCK_BusClk)
-uint8_t dutycycle = 20U; //20 percent on -> dutycycle
+uint8_t dutycycle = 50U; //20 percent on -> dutycycle
 uint8_t invert = 2U;
 uint8_t g_SignalOne, g_SignalTwo, g_SignalThree;
-uint8_t g_d0, g_d1, g_d2, g_d4, g_d5, g_d6;
-
+uint8_t  g_d1, g_d2, g_d4, g_d5, g_d6;
+uint8_t g_d0;
 
 
 ftm_config_t ftminitialisation;
 ftm_chnl_pwm_signal_param_t ftmParam[6];
 ftm_pwm_level_select_t pwmLevel = kFTM_HighTrue;
+ftm_pwm_mode_t PwmMode = kFTM_EdgeAlignedPwm;
 gpio_pin_config_t configPin;
 
 /*
@@ -233,7 +234,7 @@ int main(void) {
     	FTM_GetDefaultConfig(&ftminitialisation);
     	FTM_Init(BOARD_FTM_BASEADDR, &ftminitialisation);
 		FTM_SetupPwm(BOARD_FTM_BASEADDR, ftmParam, 6U, kFTM_EdgeAlignedPwm, 10000U, FTM_SOURCE_CLOCK);
-		FTM_StartTimer(BOARD_FTM_BASEADDR, kFTM_SystemClock);
+		FTM_StartTimer(BOARD_FTM_BASEADDR, FTM_SOURCE_CLOCK);
 
 
 		g_SignalOne = GPIO_PinRead(GPIOB, 1);
@@ -243,42 +244,44 @@ int main(void) {
 //        printf("SignalOne - %d\n", g_SignalOne);
 //        printf("SignalTwo - %d\n", g_SignalTwo);
 //        printf("SignalThree - %d\n", g_SignalThree);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, 0U, 10U);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, 0U, 10U);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, 0U, 10U);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, 0U, 10U);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, 0U, 10U);
-//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, 0U, 10U);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, dutycycle);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, dutycycle);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, dutycycle);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, dutycycle);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, dutycycle);
+//		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, dutycycle);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_0, pwmLevel);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_1, pwmLevel);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_2, pwmLevel);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_4, pwmLevel);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_5, pwmLevel);
+		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_6, pwmLevel);
 
 
 
-//		while(1)
-//		{
+		while(1)
+		{
 			UpdateInput ();
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, 0U, g_d0);
+//			FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, g_d0);
 			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, 0U, g_d1);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, 0U, g_d2);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, 0U, g_d4);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, 0U, g_d5);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, 0U, g_d6);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, g_d1);
+//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, g_d2);
+//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, g_d4);
+//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, g_d5);
+//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, g_d6);
+//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
 
 
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_0, pwmLevel);
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_1, pwmLevel);
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_2, pwmLevel);
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_4, pwmLevel);
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_5, pwmLevel);
-			FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_6, pwmLevel);
 			FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
 
 
-//		}
+		}
 
 
     return 0 ;
