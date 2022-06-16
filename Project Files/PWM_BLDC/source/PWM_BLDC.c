@@ -184,15 +184,7 @@ void FTM0_IRQHANDLER(void) {
 
   /* Place your code here */
   g_ButtonPress = true;
-  UpdateInput ();
 
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, g_d0);
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, g_d1);
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, g_d2);
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, g_d4);
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, g_d5);
-		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, g_d6);
-		FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
 
   /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F
      Store immediate overlapping exception return operation might vector to incorrect interrupt. */
@@ -268,7 +260,7 @@ int main(void) {
     	FTM_Init(BOARD_FTM_BASEADDR, &ftminitialisation);
 		FTM_SetupPwm(BOARD_FTM_BASEADDR, ftmParam, 6U, kFTM_EdgeAlignedPwm, 10000U, FTM_SOURCE_CLOCK);
 		FTM_StartTimer(BOARD_FTM_BASEADDR, FTM_SOURCE_CLOCK);
-
+//		FTM0_EXTTRIG_INIT;
 
 		g_SignalOne = GPIO_PinRead(GPIOB, 1);
 		g_SignalTwo = GPIO_PinRead(GPIOB, 10);
@@ -300,11 +292,29 @@ int main(void) {
   	  	  	if (g_ButtonPress)
   	  	  	{
 
-  	  	  		g_ButtonPress = false;
+  	  	  	UpdateInput ();
+
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, g_d0);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, g_d1);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, g_d2);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, g_d4);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, g_d5);
+			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, g_d6);
+			FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+  	  	  	g_ButtonPress = false;
+
+
+//  	  	  	while(FTM0->STATUS = 0)
+//  	  	  	{
+//  	  	  		__asm ("NOP");
+//  	  	  	}
   	  	  	}
-
+  	  	  	else
+  	  	  	{
+  	  	  		__asm ("NOP");
+  	  	  	}
   	  	  	FTM_DisableInterrupts(BOARD_FTM_BASEADDR, 0x00);
-
+  	  	  	delay();
 		}
 
 

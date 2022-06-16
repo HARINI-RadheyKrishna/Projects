@@ -837,7 +837,6 @@
                               </struct>
                               <set name="loadingPoint">
                                  <selected>
-                                    <id>CntMax</id>
                                     <id>CntMin</id>
                                  </selected>
                               </set>
@@ -862,7 +861,9 @@
                               </set>
                            </struct>
                            <set name="extTriggers">
-                              <selected/>
+                              <selected>
+                                 <id>InitTrigger</id>
+                              </selected>
                            </set>
                            <setting name="writeProtection" value="false"/>
                            <setting name="outputInit" value="false"/>
@@ -872,11 +873,9 @@
                            <setting name="globalTimeBaseOutput" value="false"/>
                         </struct>
                         <set name="timer_interrupts">
-                           <selected>
-                              <id>TimeOverflowInterruptEnable</id>
-                           </selected>
+                           <selected/>
                         </set>
-                        <setting name="loadFrequencyTOF" value="32"/>
+                        <setting name="loadFrequencyTOF" value="1"/>
                         <setting name="enable_irq" value="true"/>
                         <struct name="ftm_interrupt">
                            <setting name="IRQn" value="FTM0_IRQn"/>

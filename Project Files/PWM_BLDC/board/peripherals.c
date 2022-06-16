@@ -135,7 +135,7 @@ instance:
           - INVC: '1'
           - SYNCHOM: '1'
           - CNTINC: '1'
-        - loadingPoint: 'CntMax CntMin'
+        - loadingPoint: 'CntMin'
         - pwmSynchronizationMode: '0'
         - counterReinit: 'true'
         - triggerSynchronization:
@@ -151,15 +151,15 @@ instance:
           - SWRSTCNT: 'true'
       - intermediateLoad:
         - reloadPoints: ''
-      - extTriggers: ''
+      - extTriggers: 'InitTrigger'
       - writeProtection: 'false'
       - outputInit: 'false'
       - bdmMode: '0'
       - enableTimerInInit: 'true'
       - useGlobalTimeBase: 'true'
       - globalTimeBaseOutput: 'false'
-    - timer_interrupts: 'TimeOverflowInterruptEnable'
-    - loadFrequencyTOF: '32'
+    - timer_interrupts: ''
+    - loadFrequencyTOF: '1'
     - enable_irq: 'true'
     - ftm_interrupt:
       - IRQn: 'FTM0_IRQn'
