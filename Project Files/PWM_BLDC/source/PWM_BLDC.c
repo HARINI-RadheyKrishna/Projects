@@ -40,6 +40,10 @@
 #include "MKV31F51212.h"
 #include "fsl_debug_console.h"
 #include "fsl_ftm.h"
+#include "fsl_port.h"
+#include "fsl_gpio.h"
+#include "fsl_common.h"
+
 /* TODO: insert other include files here. */
 //#define INPUT 20
 
@@ -73,6 +77,7 @@ ftm_chnl_pwm_signal_param_t ftmParam[6];
 ftm_pwm_level_select_t pwmLevel = kFTM_HighTrue;
 ftm_pwm_mode_t PwmMode = kFTM_EdgeAlignedPwm;
 gpio_pin_config_t configPin;
+volatile bool g_ButtonPress = false;
 
 /*
  * @brief   Application entry point.
@@ -168,6 +173,34 @@ void UpdateInput (void)
 
 }
 
+/* FTM0_IRQn interrupt handler */
+void FTM0_IRQHANDLER(void) {
+  uint32_t intStatus;
+  /* Reading all interrupt flags of status registers - for example from the FTM0->SC, FTM0->FMS, FTM0->EXTTRIG, FTM0->STATUS */
+  /* Clear the status flags */
+  /* Code example: */
+  intStatus = FTM0->STATUS & (FTM_STATUS_CH0F_MASK | FTM_STATUS_CH1F_MASK); /* mask of channel #0 and #1 */
+  FTM0->STATUS = 0;
+
+  /* Place your code here */
+  g_ButtonPress = true;
+  UpdateInput ();
+
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, g_d0);
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, g_d1);
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, g_d2);
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, g_d4);
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, g_d5);
+		FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, g_d6);
+		FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+
+  /* Add for ARM errata 838869, affects Cortex-M4, Cortex-M4F
+     Store immediate overlapping exception return operation might vector to incorrect interrupt. */
+  #if defined __CORTEX_M && (__CORTEX_M == 4U)
+    __DSB();
+  #endif
+}
+
 
 int main(void) {
 
@@ -256,30 +289,21 @@ int main(void) {
 		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_4, pwmLevel);
 		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_5, pwmLevel);
 		FTM_UpdateChnlEdgeLevelSelect(BOARD_FTM_BASEADDR, FTM_Channel_6, pwmLevel);
+//		FTM_EnableInterrupts(BOARD_FTM_BASEADDR, 0x77);
 
 
 
 		while(1)
 		{
-			UpdateInput ();
-//			FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+			FTM_EnableInterrupts(BOARD_FTM_BASEADDR, 0x77);
 
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_0, PwmMode, g_d0);
-			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_1, PwmMode, g_d1);
-//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_2, PwmMode, g_d2);
-//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_4, PwmMode, g_d4);
-//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_5, PwmMode, g_d5);
-//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-			FTM_UpdatePwmDutycycle(BOARD_FTM_BASEADDR, FTM_Channel_6, PwmMode, g_d6);
-//			//FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
+  	  	  	if (g_ButtonPress)
+  	  	  	{
 
+  	  	  		g_ButtonPress = false;
+  	  	  	}
 
-			FTM_SetSoftwareTrigger(BOARD_FTM_BASEADDR, true);
-
+  	  	  	FTM_DisableInterrupts(BOARD_FTM_BASEADDR, 0x00);
 
 		}
 

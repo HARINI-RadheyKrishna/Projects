@@ -60,7 +60,8 @@ instance:
 - peripheral: 'NVIC'
 - config_sets:
   - nvic:
-    - interrupt_table: []
+    - interrupt_table:
+      - 0: []
     - interrupts: []
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS **********/
 /* clang-format on */
@@ -98,11 +99,11 @@ instance:
       - ftm_quad_decoder_mode: '0'
       - ftm_phase_a_params:
         - enablePhaseFilter: 'false'
-        - phaseFilterPeriod: '1'
+        - phaseFilterPeriod: ''
         - phasePolarity: '0'
       - ftm_phase_b_params:
         - enablePhaseFilter: 'false'
-        - phaseFilterPeriod: '1'
+        - phaseFilterPeriod: ''
         - phasePolarity: '0'
       - faultMode: '0'
       - inputFilterPeriod: '1'
@@ -134,7 +135,7 @@ instance:
           - INVC: '1'
           - SYNCHOM: '1'
           - CNTINC: '1'
-        - loadingPoint: 'CntMin'
+        - loadingPoint: 'CntMax CntMin'
         - pwmSynchronizationMode: '0'
         - counterReinit: 'true'
         - triggerSynchronization:
@@ -152,14 +153,14 @@ instance:
         - reloadPoints: ''
       - extTriggers: ''
       - writeProtection: 'false'
-      - outputInit: 'true'
+      - outputInit: 'false'
       - bdmMode: '0'
       - enableTimerInInit: 'true'
       - useGlobalTimeBase: 'true'
       - globalTimeBaseOutput: 'false'
-    - timer_interrupts: ''
-    - loadFrequencyTOF: '1'
-    - enable_irq: 'false'
+    - timer_interrupts: 'TimeOverflowInterruptEnable'
+    - loadFrequencyTOF: '32'
+    - enable_irq: 'true'
     - ftm_interrupt:
       - IRQn: 'FTM0_IRQn'
       - enable_interrrupt: 'enabled'
@@ -179,7 +180,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '20%'
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
@@ -212,7 +213,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '0'
         - inversionControl: 'false'
         - deadtimeInsertion: 'false'
         - outputControlSettings:
@@ -243,7 +244,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '0'
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
@@ -276,7 +277,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '0'
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
@@ -309,7 +310,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '0'
         - inversionControl: 'false'
         - deadtimeInsertion: 'false'
         - outputControlSettings:
@@ -340,7 +341,7 @@ instance:
         - inputFilterPeriod: '1'
         - compareValueStr: '0'
         - firstEdgeValueStr: '0'
-        - dutyValueStr: '1'
+        - dutyValueStr: '0'
         - inversionControl: 'false'
         - faultControl: 'false'
         - deadtimeInsertion: 'false'
@@ -593,6 +594,8 @@ static void FTM0_init(void) {
 	/* Select enable write protection */
   FTM0->FMS = FTM0_FMS_INIT;
 #endif /*FTM0_FMS_INIT*/
+  /* Enable interrupt FTM0_IRQn request in the NVIC. */
+  EnableIRQ(FTM0_IRQN);
 }
 
 /***********************************************************************************************************************

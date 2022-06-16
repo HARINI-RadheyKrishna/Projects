@@ -1,5 +1,7 @@
-../board/peripherals.c:375:13:FTM0_init	4	static
-../board/peripherals.c:623:13:GPIOB_init	4	static
-../board/peripherals.c:630:13:BOARD_InitPeripherals_CommonPreInit	4	static
-../board/peripherals.c:636:6:BOARD_InitPeripherals	8	static
-../board/peripherals.c:648:6:BOARD_InitBootPeripherals	8	static
+/home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/CMSIS/core_cm4.h:1679:22:__NVIC_EnableIRQ	16	static
+/home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_common_arm.h:488:24:EnableIRQ	24	static
+../board/peripherals.c:376:13:FTM0_init	8	static
+../board/peripherals.c:626:13:GPIOB_init	4	static
+../board/peripherals.c:633:13:BOARD_InitPeripherals_CommonPreInit	4	static
+../board/peripherals.c:639:6:BOARD_InitPeripherals	8	static
+../board/peripherals.c:651:6:BOARD_InitBootPeripherals	8	static

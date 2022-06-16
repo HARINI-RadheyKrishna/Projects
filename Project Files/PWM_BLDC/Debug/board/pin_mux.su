@@ -3,10 +3,10 @@
 /home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
 /home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
 ../board/pin_mux.c:132:6:BOARD_InitBootPins	8	static
-../board/pin_mux.c:165:6:BOARD_InitPins	24	static
-../board/pin_mux.c:261:6:BOARD_InitBUTTONsPins	24	static
-../board/pin_mux.c:339:6:BOARD_InitLEDsPins	32	static
-../board/pin_mux.c:449:6:BOARD_InitDEBUG_UARTPins	16	static
-../board/pin_mux.c:514:6:BOARD_InitTHERPins	4	static
-../board/pin_mux.c:542:6:BOARD_InitACCELPins	24	static
-../board/pin_mux.c:660:6:BOARD_InitOSCPins	8	static
+../board/pin_mux.c:166:6:BOARD_InitPins	24	static
+../board/pin_mux.c:272:6:BOARD_InitBUTTONsPins	24	static
+../board/pin_mux.c:350:6:BOARD_InitLEDsPins	32	static
+../board/pin_mux.c:460:6:BOARD_InitDEBUG_UARTPins	16	static
+../board/pin_mux.c:525:6:BOARD_InitTHERPins	4	static
+../board/pin_mux.c:553:6:BOARD_InitACCELPins	24	static
+../board/pin_mux.c:671:6:BOARD_InitOSCPins	8	static

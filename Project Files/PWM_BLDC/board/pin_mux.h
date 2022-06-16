@@ -52,7 +52,7 @@ void BOARD_InitBootPins(void);
 #define BOARD_FTM0_CH1_PIN_MASK (1U << 2U)      /*!<@brief PORT pin mask */
                                                 /* @} */
 
-/*! @name PORTA5 (number 39), J2[4]
+/*! @name PORTA5 (number 39), J2[4]/FTM0_CH2
   @{ */
 
 /* Symbols to be used with PORT driver */
@@ -126,6 +126,19 @@ void BOARD_InitBootPins(void);
 #define BOARD_ADC1_SE14_PIN 10U                   /*!<@brief PORT pin number */
 #define BOARD_ADC1_SE14_PIN_MASK (1U << 10U)      /*!<@brief PORT pin mask */
                                                   /* @} */
+
+/*! @name PORTB18 (number 64), J3[3]/FTM2_CH0
+  @{ */
+
+/* Symbols to be used with GPIO driver */
+#define BOARD_Timer_GPIO GPIOB                /*!<@brief GPIO peripheral base pointer */
+#define BOARD_Timer_GPIO_PIN_MASK (1U << 18U) /*!<@brief GPIO pin mask */
+
+/* Symbols to be used with PORT driver */
+#define BOARD_Timer_PORT PORTB                /*!<@brief PORT peripheral base pointer */
+#define BOARD_Timer_PIN 18U                   /*!<@brief PORT pin number */
+#define BOARD_Timer_PIN_MASK (1U << 18U)      /*!<@brief PORT pin mask */
+                                              /* @} */
 
 /*!
  * @brief Configures pin routing and optionally pin electrical features.

@@ -62,7 +62,7 @@ pin_labels:
 - {pin_num: '36', pin_signal: PTA2/UART0_TX/FTM0_CH7/CMP1_OUT/FTM2_QD_PHB/FTM1_CH0/JTAG_TDO/TRACE_SWO/EZP_DO, label: 'J9[6]/TRACE_SWO', identifier: TRACE_SWO}
 - {pin_num: '37', pin_signal: PTA3/UART0_RTS_b/FTM0_CH0/FTM2_FLT0/EWM_OUT_b/JTAG_TMS/SWD_DIO, label: 'J9[2]/SWD_DIO_TGTMCU', identifier: SWD_DIO_TGTMCU}
 - {pin_num: '38', pin_signal: PTA4/LLWU_P3/FTM0_CH1/FTM0_FLT3/NMI_b/EZP_CS_b, label: SW2/NMI_b, identifier: SW2}
-- {pin_num: '39', pin_signal: PTA5/FTM0_CH2/JTAG_TRST_b, label: 'J2[4]', identifier: FTM0_CH2}
+- {pin_num: '39', pin_signal: PTA5/FTM0_CH2/JTAG_TRST_b, label: 'J2[4]/FTM0_CH2', identifier: FTM0_CH2}
 - {pin_num: '42', pin_signal: PTA12/FTM1_CH0/FTM1_QD_PHA, label: 'J1[12]/FTM1_CH0/FTM1_QD_PHA'}
 - {pin_num: '43', pin_signal: PTA13/LLWU_P4/FTM1_CH1/FTM1_QD_PHB, label: 'J1[3]/FTM1_CH1/FTM1_QD_PHB'}
 - {pin_num: '44', pin_signal: PTA14/SPI0_PCS0/UART0_TX, label: NC}
@@ -81,7 +81,7 @@ pin_labels:
 - {pin_num: '59', pin_signal: ADC1_SE15/PTB11/SPI1_SCK/LPUART0_TX/FB_AD18/FTM0_FLT2, label: 'J4[6]/ADC1_SE15', identifier: ADC1_SE15}
 - {pin_num: '62', pin_signal: PTB16/SPI1_SOUT/UART0_RX/FTM_CLKIN0/FB_AD17/EWM_IN, label: 'U7[4]/UART0_RX_TGTMCU', identifier: DEBUG_UART_RX}
 - {pin_num: '63', pin_signal: PTB17/SPI1_SIN/UART0_TX/FTM_CLKIN1/FB_AD16/EWM_OUT_b, label: 'U10[1]/UART0_TX_TGTMCU', identifier: DEBUG_UART_TX}
-- {pin_num: '64', pin_signal: PTB18/FTM2_CH0/FB_AD15/FTM2_QD_PHA, label: 'J3[3]/FTM2_CH0', identifier: FTM2_CH0}
+- {pin_num: '64', pin_signal: PTB18/FTM2_CH0/FB_AD15/FTM2_QD_PHA, label: 'J3[3]/FTM2_CH0', identifier: FTM2_CH0;Timer}
 - {pin_num: '65', pin_signal: PTB19/FTM2_CH1/FB_OE_b/FTM2_QD_PHB, label: 'J3[1]/FTM2_CH1', identifier: FTM2_CH1}
 - {pin_num: '66', pin_signal: PTB20/FB_AD31/CMP0_OUT, label: 'J2[17]/CMP0_OUT', identifier: CMP0_OUT}
 - {pin_num: '67', pin_signal: PTB21/FB_AD30/CMP1_OUT, label: 'J4[9]/CMP1_OUT', identifier: CMP1_OUT}
@@ -152,6 +152,7 @@ BOARD_InitPins:
   - {pin_num: '54', peripheral: GPIOB, signal: 'GPIO, 1', pin_signal: ADC0_SE9/ADC1_SE9/PTB1/I2C0_SDA/FTM1_CH1/FTM0_FLT2/EWM_IN/FTM1_QD_PHB/UART0_TX, direction: INPUT}
   - {pin_num: '55', peripheral: GPIOB, signal: 'GPIO, 2', pin_signal: ADC0_SE12/PTB2/I2C0_SCL/UART0_RTS_b/FTM0_FLT1/FTM0_FLT3, direction: INPUT}
   - {pin_num: '58', peripheral: GPIOB, signal: 'GPIO, 10', pin_signal: ADC1_SE14/PTB10/SPI1_PCS0/LPUART0_RX/FB_AD19/FTM0_FLT1, direction: INPUT}
+  - {pin_num: '64', peripheral: GPIOB, signal: 'GPIO, 18', pin_signal: PTB18/FTM2_CH0/FB_AD15/FTM2_QD_PHA, identifier: Timer, direction: OUTPUT}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
@@ -196,6 +197,13 @@ void BOARD_InitPins(void)
     /* Initialize GPIO functionality on pin PTB10 (pin 58)  */
     GPIO_PinInit(BOARD_ADC1_SE14_GPIO, BOARD_ADC1_SE14_PIN, &ADC1_SE14_config);
 
+    gpio_pin_config_t Timer_config = {
+        .pinDirection = kGPIO_DigitalOutput,
+        .outputLogic = 0U
+    };
+    /* Initialize GPIO functionality on pin PTB18 (pin 64)  */
+    GPIO_PinInit(BOARD_Timer_GPIO, BOARD_Timer_PIN, &Timer_config);
+
     /* PORTA2 (pin 36) is configured as TRACE_SWO */
     PORT_SetPinMux(BOARD_TRACE_SWO_PORT, BOARD_TRACE_SWO_PIN, kPORT_MuxAlt7);
 
@@ -218,6 +226,9 @@ void BOARD_InitPins(void)
 
     /* PORTB10 (pin 58) is configured as PTB10 */
     PORT_SetPinMux(BOARD_ADC1_SE14_PORT, BOARD_ADC1_SE14_PIN, kPORT_MuxAsGpio);
+
+    /* PORTB18 (pin 64) is configured as PTB18 */
+    PORT_SetPinMux(BOARD_Timer_PORT, BOARD_Timer_PIN, kPORT_MuxAsGpio);
 
     /* PORTB2 (pin 55) is configured as PTB2 */
     PORT_SetPinMux(BOARD_ADC0_SE12_PORT, BOARD_ADC0_SE12_PIN, kPORT_MuxAsGpio);
