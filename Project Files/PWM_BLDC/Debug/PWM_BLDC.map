@@ -2835,13 +2835,11 @@ END GROUP
  .data.dutycycle
                 0x000000002000000c        0x1 ./source/PWM_BLDC.o
                 0x000000002000000c                dutycycle
- .data.invert   0x000000002000000d        0x1 ./source/PWM_BLDC.o
-                0x000000002000000d                invert
  .data.pwmLevel
-                0x000000002000000e        0x1 ./source/PWM_BLDC.o
-                0x000000002000000e                pwmLevel
+                0x000000002000000d        0x1 ./source/PWM_BLDC.o
+                0x000000002000000d                pwmLevel
                 0x0000000020000010                . = ALIGN (0x4)
- *fill*         0x000000002000000f        0x1 ff
+ *fill*         0x000000002000000e        0x2 ff
                 0x0000000020000010                _edata = .
                 [!provide]                        PROVIDE (__end_data_RAM = .)
                 [!provide]                        PROVIDE (__end_data_SRAM_UPPER = .)
@@ -2901,35 +2899,36 @@ END GROUP
                 0x0000000020000134                __end_of_heap
  .bss.__heaps   0x0000000020000138        0x4 /usr/local/mcuxpressoide-11.4.0_6237/ide/plugins/com.nxp.mcuxpresso.tools.linux_11.4.0.202103011116/tools/bin/../lib/gcc/arm-none-eabi/10.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/libcr_c.a(__init_alloc.o)
                 0x0000000020000138                __heaps
+ .bss.invert    0x000000002000013c        0x1 ./source/PWM_BLDC.o
+                0x000000002000013c                invert
  .bss.g_SignalOne
-                0x000000002000013c        0x1 ./source/PWM_BLDC.o
-                0x000000002000013c                g_SignalOne
- .bss.g_SignalTwo
                 0x000000002000013d        0x1 ./source/PWM_BLDC.o
-                0x000000002000013d                g_SignalTwo
- .bss.g_SignalThree
+                0x000000002000013d                g_SignalOne
+ .bss.g_SignalTwo
                 0x000000002000013e        0x1 ./source/PWM_BLDC.o
-                0x000000002000013e                g_SignalThree
- .bss.g_d1      0x000000002000013f        0x1 ./source/PWM_BLDC.o
-                0x000000002000013f                g_d1
- .bss.g_d2      0x0000000020000140        0x1 ./source/PWM_BLDC.o
-                0x0000000020000140                g_d2
- .bss.g_d4      0x0000000020000141        0x1 ./source/PWM_BLDC.o
-                0x0000000020000141                g_d4
- .bss.g_d5      0x0000000020000142        0x1 ./source/PWM_BLDC.o
-                0x0000000020000142                g_d5
- .bss.g_d6      0x0000000020000143        0x1 ./source/PWM_BLDC.o
-                0x0000000020000143                g_d6
- .bss.g_d0      0x0000000020000144        0x1 ./source/PWM_BLDC.o
-                0x0000000020000144                g_d0
- .bss.PwmMode   0x0000000020000145        0x1 ./source/PWM_BLDC.o
-                0x0000000020000145                PwmMode
+                0x000000002000013e                g_SignalTwo
+ .bss.g_SignalThree
+                0x000000002000013f        0x1 ./source/PWM_BLDC.o
+                0x000000002000013f                g_SignalThree
+ .bss.g_d1      0x0000000020000140        0x1 ./source/PWM_BLDC.o
+                0x0000000020000140                g_d1
+ .bss.g_d2      0x0000000020000141        0x1 ./source/PWM_BLDC.o
+                0x0000000020000141                g_d2
+ .bss.g_d4      0x0000000020000142        0x1 ./source/PWM_BLDC.o
+                0x0000000020000142                g_d4
+ .bss.g_d5      0x0000000020000143        0x1 ./source/PWM_BLDC.o
+                0x0000000020000143                g_d5
+ .bss.g_d6      0x0000000020000144        0x1 ./source/PWM_BLDC.o
+                0x0000000020000144                g_d6
+ .bss.g_d0      0x0000000020000145        0x1 ./source/PWM_BLDC.o
+                0x0000000020000145                g_d0
+ .bss.PwmMode   0x0000000020000146        0x1 ./source/PWM_BLDC.o
+                0x0000000020000146                PwmMode
  .bss.g_ButtonPress
-                0x0000000020000146        0x1 ./source/PWM_BLDC.o
-                0x0000000020000146                g_ButtonPress
+                0x0000000020000147        0x1 ./source/PWM_BLDC.o
+                0x0000000020000147                g_ButtonPress
  *(SORT_BY_ALIGNMENT(COMMON))
                 0x0000000020000148                . = ALIGN (0x4)
- *fill*         0x0000000020000147        0x1 
                 0x0000000020000148                _ebss = .
                 [!provide]                        PROVIDE (__end_bss_RAM = .)
                 [!provide]                        PROVIDE (__end_bss_SRAM_UPPER = .)
@@ -3090,21 +3089,21 @@ LOAD linker stubs
  .debug_macro   0x000000000000140d      0x12d ./board/peripherals.o
  .debug_macro   0x000000000000153a      0x127 ./board/pin_mux.o
 
-.debug_line     0x0000000000000000     0x7f17
+.debug_line     0x0000000000000000     0x7f16
  .debug_line    0x0000000000000000      0x7f5 ./startup/startup_mkv31f51212.o
- .debug_line    0x00000000000007f5      0x846 ./source/PWM_BLDC.o
- .debug_line    0x000000000000103b       0x59 ./source/semihost_hardfault.o
- .debug_line    0x0000000000001094     0x1437 ./drivers/fsl_clock.o
- .debug_line    0x00000000000024cb      0xf52 ./drivers/fsl_ftm.o
- .debug_line    0x000000000000341d      0x414 ./drivers/fsl_gpio.o
- .debug_line    0x0000000000003831     0x13bb ./drivers/fsl_i2c.o
- .debug_line    0x0000000000004bec      0x637 ./drivers/fsl_smc.o
- .debug_line    0x0000000000005223     0x1384 ./drivers/fsl_uart.o
- .debug_line    0x00000000000065a7      0x3f2 ./device/system_MKV31F51212.o
- .debug_line    0x0000000000006999      0x52a ./board/board.o
- .debug_line    0x0000000000006ec3      0x506 ./board/clock_config.o
- .debug_line    0x00000000000073c9      0x562 ./board/peripherals.o
- .debug_line    0x000000000000792b      0x5ec ./board/pin_mux.o
+ .debug_line    0x00000000000007f5      0x845 ./source/PWM_BLDC.o
+ .debug_line    0x000000000000103a       0x59 ./source/semihost_hardfault.o
+ .debug_line    0x0000000000001093     0x1437 ./drivers/fsl_clock.o
+ .debug_line    0x00000000000024ca      0xf52 ./drivers/fsl_ftm.o
+ .debug_line    0x000000000000341c      0x414 ./drivers/fsl_gpio.o
+ .debug_line    0x0000000000003830     0x13bb ./drivers/fsl_i2c.o
+ .debug_line    0x0000000000004beb      0x637 ./drivers/fsl_smc.o
+ .debug_line    0x0000000000005222     0x1384 ./drivers/fsl_uart.o
+ .debug_line    0x00000000000065a6      0x3f2 ./device/system_MKV31F51212.o
+ .debug_line    0x0000000000006998      0x52a ./board/board.o
+ .debug_line    0x0000000000006ec2      0x506 ./board/clock_config.o
+ .debug_line    0x00000000000073c8      0x562 ./board/peripherals.o
+ .debug_line    0x000000000000792a      0x5ec ./board/pin_mux.o
 
 .debug_str      0x0000000000000000    0x51ef7
  .debug_str     0x0000000000000000     0x34a9 ./startup/startup_mkv31f51212.o

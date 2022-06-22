@@ -1,32 +1,3 @@
-/*
- * Copyright 2016-2022 NXP
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- * o Redistributions of source code must retain the above copyright notice, this list
- *   of conditions and the following disclaimer.
- *
- * o Redistributions in binary form must reproduce the above copyright notice, this
- *   list of conditions and the following disclaimer in the documentation and/or
- *   other materials provided with the distribution.
- *
- * o Neither the name of NXP Semiconductor, Inc. nor the names of its
- *   contributors may be used to endorse or promote products derived from this
- *   software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
- * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
- * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
 
 /**
  * @file    PWM_BLDC.c
@@ -66,7 +37,7 @@ for (int i; i<1000; i++)
 
 #define FTM_SOURCE_CLOCK CLOCK_GetFreq(kCLOCK_BusClk)
 uint8_t dutycycle = 50U; //20 percent on -> dutycycle
-uint8_t invert = 2U;
+uint8_t invert = 0U;
 uint8_t g_SignalOne, g_SignalTwo, g_SignalThree;
 uint8_t  g_d1, g_d2, g_d4, g_d5, g_d6;
 uint8_t g_d0;
@@ -258,7 +229,7 @@ int main(void) {
 
     	FTM_GetDefaultConfig(&ftminitialisation);
     	FTM_Init(BOARD_FTM_BASEADDR, &ftminitialisation);
-		FTM_SetupPwm(BOARD_FTM_BASEADDR, ftmParam, 6U, kFTM_EdgeAlignedPwm, 10000U, FTM_SOURCE_CLOCK);
+		FTM_SetupPwm(BOARD_FTM_BASEADDR, ftmParam, 6U, kFTM_EdgeAlignedPwm, 30000U, FTM_SOURCE_CLOCK);
 		FTM_StartTimer(BOARD_FTM_BASEADDR, FTM_SOURCE_CLOCK);
 //		FTM0_EXTTRIG_INIT;
 

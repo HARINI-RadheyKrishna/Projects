@@ -1,7 +1,7 @@
 /home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_gpio.h:244:24:GPIO_PinRead	16	static
 /home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_ftm.h:700:20:FTM_StartTimer	24	static
 /home/harini/Desktop/Project code/Projects/Project Files/PWM_BLDC/drivers/fsl_ftm.h:996:20:FTM_SetSoftwareTrigger	16	static
-../source/PWM_BLDC.c:51:6:delay	16	static
-../source/PWM_BLDC.c:89:6:UpdateInput	8	static
-../source/PWM_BLDC.c:177:6:FTM0_IRQHandler	16	static
-../source/PWM_BLDC.c:197:5:main	16	static
+../source/PWM_BLDC.c:22:6:delay	16	static
+../source/PWM_BLDC.c:60:6:UpdateInput	8	static
+../source/PWM_BLDC.c:148:6:FTM0_IRQHandler	16	static
+../source/PWM_BLDC.c:168:5:main	16	static
